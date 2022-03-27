@@ -1,0 +1,8 @@
+rootProject.name = "mediapipe-hands"
+include ':hands'
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+        settingsDir.parentFile,
+        'kwik_cap_ui/.android/include_flutter.groovy'
+))
+

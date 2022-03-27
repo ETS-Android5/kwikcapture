@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mediapipe-hands.iml" filepath="$PROJECT_DIR$/.idea/modules/mediapipe-hands.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2014886569/mediapipe-hands.flutter.iml" filepath="$PROJECT_DIR$/.idea/modules/2014886569/mediapipe-hands.flutter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hands/mediapipe-hands.hands.iml" filepath="$PROJECT_DIR$/.idea/modules/hands/mediapipe-hands.hands.iml" />
+    </modules>
+  </component>
+</project>

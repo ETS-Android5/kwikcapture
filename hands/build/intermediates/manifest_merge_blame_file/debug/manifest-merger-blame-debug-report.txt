@@ -1,0 +1,145 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.google.mediapipe.apps.hands"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+7-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:6:3-9:40
+8        android:minSdkVersion="21"
+8-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:7:7-33
+9        android:targetSdkVersion="31" />
+9-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:8:7-36
+10
+11    <!-- For loading images from gallery -->
+12    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+12-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:12:3-78
+12-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:12:20-75
+13    <!-- For using the camera -->
+14    <uses-permission android:name="android.permission.CAMERA" />
+14-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:14:3-63
+14-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:14:20-60
+15
+16    <uses-feature android:name="android.hardware.camera" />
+16-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:15:3-58
+16-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:15:17-55
+17    <!-- For logging solution events -->
+18    <uses-permission android:name="android.permission.INTERNET" />
+18-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:17:3-65
+18-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:17:20-62
+19    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+19-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:18:3-77
+19-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:18:20-74
+20
+21    <application
+21-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:20:3-47:17
+22        android:allowBackup="true"
+22-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:21:7-33
+23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+23-->[androidx.core:core:1.6.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/fed153e998dad905e4adff9ff8e1a1ec/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
+24        android:debuggable="true"
+25        android:icon="@mipmap/ic_launcher"
+25-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:22:7-41
+26        android:label="MediaPipe Hands"
+26-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:23:7-38
+27        android:roundIcon="@mipmap/ic_launcher_round"
+27-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:24:7-52
+28        android:supportsRtl="true"
+28-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:25:7-33
+29        android:testOnly="true"
+30        android:theme="@style/AppTheme" >
+30-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:26:7-38
+31        <activity
+31-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:28:5-37:16
+32            android:name="com.google.mediapipe.examples.hands.MainActivity"
+32-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:29:9-37
+33            android:exported="true"
+33-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:31:9-32
+34            android:screenOrientation="fullSensor" >
+34-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:30:9-47
+35            <intent-filter>
+35-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:32:7-36:23
+36                <action android:name="android.intent.action.MAIN" />
+36-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:33:9-61
+36-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:33:17-58
+37
+38                <category android:name="android.intent.category.LAUNCHER" />
+38-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:35:9-69
+38-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:35:19-66
+39            </intent-filter>
+40        </activity>
+41        <activity
+41-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:39:5-45:9
+42            android:name="io.flutter.embedding.android.FlutterActivity"
+42-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:40:9-68
+43            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+43-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:42:9-140
+44            android:hardwareAccelerated="true"
+44-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:43:9-43
+45            android:theme="@style/LaunchTheme"
+45-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:41:9-43
+46            android:windowSoftInputMode="adjustResize" />
+46-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:44:9-51
+47
+48        <meta-data
+48-->[:flutter] /Users/dhruvilpatel/Documents/mediapipe-hands/kwik_cap_ui/.android/Flutter/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:9-16:38
+49            android:name="flutterProjectType"
+49-->[:flutter] /Users/dhruvilpatel/Documents/mediapipe-hands/kwik_cap_ui/.android/Flutter/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-46
+50            android:value="module" />
+50-->[:flutter] /Users/dhruvilpatel/Documents/mediapipe-hands/kwik_cap_ui/.android/Flutter/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-35
+51        <!--
+52           Don't delete the meta-data below.
+53           It is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+54        -->
+55        <meta-data
+55-->[:flutter] /Users/dhruvilpatel/Documents/mediapipe-hands/kwik_cap_ui/.android/Flutter/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:9-23:33
+56            android:name="flutterEmbedding"
+56-->[:flutter] /Users/dhruvilpatel/Documents/mediapipe-hands/kwik_cap_ui/.android/Flutter/build/intermediates/merged_manifest/debug/AndroidManifest.xml:22:13-44
+57            android:value="2" />
+57-->[:flutter] /Users/dhruvilpatel/Documents/mediapipe-hands/kwik_cap_ui/.android/Flutter/build/intermediates/merged_manifest/debug/AndroidManifest.xml:23:13-30
+58
+59        <uses-library
+59-->[androidx.window:window:1.0.0-beta04] /Users/dhruvilpatel/.gradle/caches/transforms-3/5f913e6d8a97ced4c52ea4b494e52297/transformed/window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+60            android:name="androidx.window.extensions"
+60-->[androidx.window:window:1.0.0-beta04] /Users/dhruvilpatel/.gradle/caches/transforms-3/5f913e6d8a97ced4c52ea4b494e52297/transformed/window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+61            android:required="false" />
+61-->[androidx.window:window:1.0.0-beta04] /Users/dhruvilpatel/.gradle/caches/transforms-3/5f913e6d8a97ced4c52ea4b494e52297/transformed/window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+62        <uses-library
+62-->[androidx.window:window:1.0.0-beta04] /Users/dhruvilpatel/.gradle/caches/transforms-3/5f913e6d8a97ced4c52ea4b494e52297/transformed/window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+63            android:name="androidx.window.sidecar"
+63-->[androidx.window:window:1.0.0-beta04] /Users/dhruvilpatel/.gradle/caches/transforms-3/5f913e6d8a97ced4c52ea4b494e52297/transformed/window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+64            android:required="false" />
+64-->[androidx.window:window:1.0.0-beta04] /Users/dhruvilpatel/.gradle/caches/transforms-3/5f913e6d8a97ced4c52ea4b494e52297/transformed/window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+65
+66        <service
+66-->[com.google.android.datatransport:transport-backend-cct:3.1.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/5a4174a3138b5bf20ae635f6f6aefd3e/transformed/transport-backend-cct-3.1.0/AndroidManifest.xml:29:9-35:19
+67            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+67-->[com.google.android.datatransport:transport-backend-cct:3.1.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/5a4174a3138b5bf20ae635f6f6aefd3e/transformed/transport-backend-cct-3.1.0/AndroidManifest.xml:30:13-103
+68            android:exported="false" >
+68-->[com.google.android.datatransport:transport-backend-cct:3.1.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/5a4174a3138b5bf20ae635f6f6aefd3e/transformed/transport-backend-cct-3.1.0/AndroidManifest.xml:31:13-37
+69            <meta-data
+69-->[com.google.android.datatransport:transport-backend-cct:3.1.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/5a4174a3138b5bf20ae635f6f6aefd3e/transformed/transport-backend-cct-3.1.0/AndroidManifest.xml:32:13-34:39
+70                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+70-->[com.google.android.datatransport:transport-backend-cct:3.1.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/5a4174a3138b5bf20ae635f6f6aefd3e/transformed/transport-backend-cct-3.1.0/AndroidManifest.xml:33:17-94
+71                android:value="cct" />
+71-->[com.google.android.datatransport:transport-backend-cct:3.1.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/5a4174a3138b5bf20ae635f6f6aefd3e/transformed/transport-backend-cct-3.1.0/AndroidManifest.xml:34:17-36
+72        </service>
+73        <service
+73-->[com.google.android.datatransport:transport-runtime:3.1.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/d8b23cd49b7cd7f0afa7b4456023696a/transformed/transport-runtime-3.1.0/AndroidManifest.xml:26:9-30:19
+74            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+74-->[com.google.android.datatransport:transport-runtime:3.1.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/d8b23cd49b7cd7f0afa7b4456023696a/transformed/transport-runtime-3.1.0/AndroidManifest.xml:27:13-117
+75            android:exported="false"
+75-->[com.google.android.datatransport:transport-runtime:3.1.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/d8b23cd49b7cd7f0afa7b4456023696a/transformed/transport-runtime-3.1.0/AndroidManifest.xml:28:13-37
+76            android:permission="android.permission.BIND_JOB_SERVICE" >
+76-->[com.google.android.datatransport:transport-runtime:3.1.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/d8b23cd49b7cd7f0afa7b4456023696a/transformed/transport-runtime-3.1.0/AndroidManifest.xml:29:13-69
+77        </service>
+78
+79        <receiver
+79-->[com.google.android.datatransport:transport-runtime:3.1.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/d8b23cd49b7cd7f0afa7b4456023696a/transformed/transport-runtime-3.1.0/AndroidManifest.xml:32:9-34:40
+80            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+80-->[com.google.android.datatransport:transport-runtime:3.1.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/d8b23cd49b7cd7f0afa7b4456023696a/transformed/transport-runtime-3.1.0/AndroidManifest.xml:33:13-132
+81            android:exported="false" />
+81-->[com.google.android.datatransport:transport-runtime:3.1.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/d8b23cd49b7cd7f0afa7b4456023696a/transformed/transport-runtime-3.1.0/AndroidManifest.xml:34:13-37
+82    </application>
+83
+84</manifest>
