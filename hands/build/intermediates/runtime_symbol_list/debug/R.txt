@@ -1791,12 +1791,9 @@ int id blocking 0x7f080055
 int id bottom 0x7f080056
 int id bounce 0x7f080057
 int id buttonPanel 0x7f080058
-int id button_load_picture 0x7f080059
-int id button_load_video 0x7f08005a
 int id button_start_camera 0x7f08005b
 int id button_stop_camera 0x7f08005c
 int id buttonsLive 0x7f08005d
-int id buttonsStatic 0x7f08005e
 int id cache_measures 0x7f08005f
 int id cancel_button 0x7f080060
 int id center 0x7f080061
@@ -1876,7 +1873,6 @@ int id fitToContents 0x7f0800aa
 int id fixed 0x7f0800ab
 int id flip 0x7f0800ac
 int id floating 0x7f0800ad
-int id flutterScreen 0x7f0800ae
 int id flutter_screen 0x7f0800af
 int id forever 0x7f0800b0
 int id fragment_container_view_tag 0x7f0800b1

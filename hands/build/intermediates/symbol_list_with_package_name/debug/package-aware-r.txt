@@ -1792,12 +1792,9 @@ id blocking
 id bottom
 id bounce
 id buttonPanel
-id button_load_picture
-id button_load_video
 id button_start_camera
 id button_stop_camera
 id buttonsLive
-id buttonsStatic
 id cache_measures
 id cancel_button
 id center
@@ -1877,7 +1874,6 @@ id fitToContents
 id fixed
 id flip
 id floating
-id flutterScreen
 id flutter_screen
 id forever
 id fragment_container_view_tag

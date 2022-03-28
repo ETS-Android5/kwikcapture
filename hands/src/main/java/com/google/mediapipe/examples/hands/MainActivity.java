@@ -77,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    setupStaticImageDemoUiComponents();
-    setupVideoDemoUiComponents();
+//    setupStaticImageDemoUiComponents();
+//    setupVideoDemoUiComponents();
     setupLiveDemoUiComponents();
     setupStopLiveDemoUiComponents();
     setupFlutterScreenInit();
@@ -122,152 +122,152 @@ public class MainActivity extends AppCompatActivity {
     }
   }
 
-  private Bitmap downscaleBitmap(Bitmap originalBitmap) {
-    double aspectRatio = (double) originalBitmap.getWidth() / originalBitmap.getHeight();
-    int width = imageView.getWidth();
-    int height = imageView.getHeight();
-    if (((double) imageView.getWidth() / imageView.getHeight()) > aspectRatio) {
-      width = (int) (height * aspectRatio);
-    } else {
-      height = (int) (width / aspectRatio);
-    }
-    return Bitmap.createScaledBitmap(originalBitmap, width, height, false);
-  }
+//  private Bitmap downscaleBitmap(Bitmap originalBitmap) {
+//    double aspectRatio = (double) originalBitmap.getWidth() / originalBitmap.getHeight();
+//    int width = imageView.getWidth();
+//    int height = imageView.getHeight();
+//    if (((double) imageView.getWidth() / imageView.getHeight()) > aspectRatio) {
+//      width = (int) (height * aspectRatio);
+//    } else {
+//      height = (int) (width / aspectRatio);
+//    }
+//    return Bitmap.createScaledBitmap(originalBitmap, width, height, false);
+//  }
 
-  private Bitmap rotateBitmap(Bitmap inputBitmap, InputStream imageData) throws IOException {
-    int orientation =
-        new ExifInterface(imageData)
-            .getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
-    if (orientation == ExifInterface.ORIENTATION_NORMAL) {
-      return inputBitmap;
-    }
-    Matrix matrix = new Matrix();
-    switch (orientation) {
-      case ExifInterface.ORIENTATION_ROTATE_90:
-        matrix.postRotate(90);
-        break;
-      case ExifInterface.ORIENTATION_ROTATE_180:
-        matrix.postRotate(180);
-        break;
-      case ExifInterface.ORIENTATION_ROTATE_270:
-        matrix.postRotate(270);
-        break;
-      default:
-        matrix.postRotate(0);
-    }
-    return Bitmap.createBitmap(
-        inputBitmap, 0, 0, inputBitmap.getWidth(), inputBitmap.getHeight(), matrix, true);
-  }
+//  private Bitmap rotateBitmap(Bitmap inputBitmap, InputStream imageData) throws IOException {
+//    int orientation =
+//        new ExifInterface(imageData)
+//            .getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+//    if (orientation == ExifInterface.ORIENTATION_NORMAL) {
+//      return inputBitmap;
+//    }
+//    Matrix matrix = new Matrix();
+//    switch (orientation) {
+//      case ExifInterface.ORIENTATION_ROTATE_90:
+//        matrix.postRotate(90);
+//        break;
+//      case ExifInterface.ORIENTATION_ROTATE_180:
+//        matrix.postRotate(180);
+//        break;
+//      case ExifInterface.ORIENTATION_ROTATE_270:
+//        matrix.postRotate(270);
+//        break;
+//      default:
+//        matrix.postRotate(0);
+//    }
+//    return Bitmap.createBitmap(
+//        inputBitmap, 0, 0, inputBitmap.getWidth(), inputBitmap.getHeight(), matrix, true);
+//  }
 
-  /** Sets up the UI components for the static image demo. */
-  private void setupStaticImageDemoUiComponents() {
-    // The Intent to access gallery and read images as bitmap.
-    imageGetter =
-        registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-              Intent resultIntent = result.getData();
-              if (resultIntent != null) {
-                if (result.getResultCode() == RESULT_OK) {
-                  Bitmap bitmap = null;
-                  try {
-                    bitmap =
-                        downscaleBitmap(
-                            MediaStore.Images.Media.getBitmap(
-                                this.getContentResolver(), resultIntent.getData()));
-                  } catch (IOException e) {
-                    Log.e(TAG, "Bitmap reading error:" + e);
-                  }
-                  try {
-                    InputStream imageData =
-                        this.getContentResolver().openInputStream(resultIntent.getData());
-                    bitmap = rotateBitmap(bitmap, imageData);
-                  } catch (IOException e) {
-                    Log.e(TAG, "Bitmap rotation error:" + e);
-                  }
-                  if (bitmap != null) {
-                    hands.send(bitmap);
-                  }
-                }
-              }
-            });
-    Button loadImageButton = findViewById(R.id.button_load_picture);
-    loadImageButton.setOnClickListener(
-        v -> {
-          if (inputSource != InputSource.IMAGE) {
-            stopCurrentPipeline();
-            setupStaticImageModePipeline();
-          }
-          // Reads images from gallery.
-          Intent pickImageIntent = new Intent(Intent.ACTION_PICK);
-          pickImageIntent.setDataAndType(MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
-          imageGetter.launch(pickImageIntent);
-        });
-    imageView = new HandsResultImageView(this);
-  }
-
-  /** Sets up core workflow for static image mode. */
-  private void setupStaticImageModePipeline() {
-    this.inputSource = InputSource.IMAGE;
-    // Initializes a new MediaPipe Hands solution instance in the static image mode.
-    hands =
-        new Hands(
-            this,
-            HandsOptions.builder()
-                .setStaticImageMode(true)
-                .setMaxNumHands(2)
-                .setRunOnGpu(RUN_ON_GPU)
-                .build());
-
-    // Connects MediaPipe Hands solution to the user-defined HandsResultImageView.
-    hands.setResultListener(
-        handsResult -> {
-          logIndexFingerTipLandmark(handsResult, /*showPixelValues=*/ true);
-          imageView.setHandsResult(handsResult);
-          runOnUiThread(() -> imageView.update());
-        });
-    hands.setErrorListener((message, e) -> Log.e(TAG, "MediaPipe Hands error:" + message));
-
-    // Updates the preview layout.
-    FrameLayout frameLayout = findViewById(R.id.preview_display_layout);
-    frameLayout.removeAllViewsInLayout();
-    imageView.setImageDrawable(null);
-    frameLayout.addView(imageView);
-    imageView.setVisibility(View.VISIBLE);
-  }
-
-  /** Sets up the UI components for the video demo. */
-  private void setupVideoDemoUiComponents() {
-    // The Intent to access gallery and read a video file.
-    videoGetter =
-        registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-              Intent resultIntent = result.getData();
-              if (resultIntent != null) {
-                if (result.getResultCode() == RESULT_OK) {
-                  glSurfaceView.post(
-                      () ->
-                          videoInput.start(
-                              this,
-                              resultIntent.getData(),
-                              hands.getGlContext(),
-                              glSurfaceView.getWidth(),
-                              glSurfaceView.getHeight()));
-                }
-              }
-            });
-    Button loadVideoButton = findViewById(R.id.button_load_video);
-    loadVideoButton.setOnClickListener(
-        v -> {
-          stopCurrentPipeline();
-          setupStreamingModePipeline(InputSource.VIDEO);
-          // Reads video from gallery.
-          Intent pickVideoIntent = new Intent(Intent.ACTION_PICK);
-          pickVideoIntent.setDataAndType(MediaStore.Video.Media.INTERNAL_CONTENT_URI, "video/*");
-          videoGetter.launch(pickVideoIntent);
-        });
-  }
+//  /** Sets up the UI components for the static image demo. */
+//  private void setupStaticImageDemoUiComponents() {
+//    // The Intent to access gallery and read images as bitmap.
+//    imageGetter =
+//        registerForActivityResult(
+//            new ActivityResultContracts.StartActivityForResult(),
+//            result -> {
+//              Intent resultIntent = result.getData();
+//              if (resultIntent != null) {
+//                if (result.getResultCode() == RESULT_OK) {
+//                  Bitmap bitmap = null;
+//                  try {
+//                    bitmap =
+//                        downscaleBitmap(
+//                            MediaStore.Images.Media.getBitmap(
+//                                this.getContentResolver(), resultIntent.getData()));
+//                  } catch (IOException e) {
+//                    Log.e(TAG, "Bitmap reading error:" + e);
+//                  }
+//                  try {
+//                    InputStream imageData =
+//                        this.getContentResolver().openInputStream(resultIntent.getData());
+//                    bitmap = rotateBitmap(bitmap, imageData);
+//                  } catch (IOException e) {
+//                    Log.e(TAG, "Bitmap rotation error:" + e);
+//                  }
+//                  if (bitmap != null) {
+//                    hands.send(bitmap);
+//                  }
+//                }
+//              }
+//            });
+////    Button loadImageButton = findViewById(R.id.button_load_picture);
+////    loadImageButton.setOnClickListener(
+////        v -> {
+////          if (inputSource != InputSource.IMAGE) {
+////            stopCurrentPipeline();
+////            setupStaticImageModePipeline();
+////          }
+////          // Reads images from gallery.
+////          Intent pickImageIntent = new Intent(Intent.ACTION_PICK);
+////          pickImageIntent.setDataAndType(MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
+////          imageGetter.launch(pickImageIntent);
+////        });
+//    imageView = new HandsResultImageView(this);
+//  }
+//
+//  /** Sets up core workflow for static image mode. */
+//  private void setupStaticImageModePipeline() {
+//    this.inputSource = InputSource.IMAGE;
+//    // Initializes a new MediaPipe Hands solution instance in the static image mode.
+//    hands =
+//        new Hands(
+//            this,
+//            HandsOptions.builder()
+//                .setStaticImageMode(true)
+//                .setMaxNumHands(2)
+//                .setRunOnGpu(RUN_ON_GPU)
+//                .build());
+//
+//    // Connects MediaPipe Hands solution to the user-defined HandsResultImageView.
+//    hands.setResultListener(
+//        handsResult -> {
+//          logIndexFingerTipLandmark(handsResult, /*showPixelValues=*/ true);
+//          imageView.setHandsResult(handsResult);
+//          runOnUiThread(() -> imageView.update());
+//        });
+//    hands.setErrorListener((message, e) -> Log.e(TAG, "Kwik Capture error:" + message));
+//
+//    // Updates the preview layout.
+//    FrameLayout frameLayout = findViewById(R.id.preview_display_layout);
+//    frameLayout.removeAllViewsInLayout();
+//    imageView.setImageDrawable(null);
+//    frameLayout.addView(imageView);
+//    imageView.setVisibility(View.VISIBLE);
+//  }
+//
+//  /** Sets up the UI components for the video demo. */
+//  private void setupVideoDemoUiComponents() {
+//    // The Intent to access gallery and read a video file.
+//    videoGetter =
+//        registerForActivityResult(
+//            new ActivityResultContracts.StartActivityForResult(),
+//            result -> {
+//              Intent resultIntent = result.getData();
+//              if (resultIntent != null) {
+//                if (result.getResultCode() == RESULT_OK) {
+//                  glSurfaceView.post(
+//                      () ->
+//                          videoInput.start(
+//                              this,
+//                              resultIntent.getData(),
+//                              hands.getGlContext(),
+//                              glSurfaceView.getWidth(),
+//                              glSurfaceView.getHeight()));
+//                }
+//              }
+//            });
+////    Button loadVideoButton = findViewById(R.id.button_load_video);
+////    loadVideoButton.setOnClickListener(
+////        v -> {
+////          stopCurrentPipeline();
+////          setupStreamingModePipeline(InputSource.VIDEO);
+////          // Reads video from gallery.
+////          Intent pickVideoIntent = new Intent(Intent.ACTION_PICK);
+////          pickVideoIntent.setDataAndType(MediaStore.Video.Media.INTERNAL_CONTENT_URI, "video/*");
+////          videoGetter.launch(pickVideoIntent);
+////        });
+//  }
 
   /** Sets up the UI components for the live demo with camera input. */
   private void setupFlutterScreenInit() {
@@ -282,7 +282,6 @@ public class MainActivity extends AppCompatActivity {
         );
       });
   }
-
 
   /** Sets up the UI components for the live demo with camera input. */
   private void setupLiveDemoUiComponents() {
@@ -320,7 +319,7 @@ public class MainActivity extends AppCompatActivity {
                 .setMaxNumHands(2)
                 .setRunOnGpu(RUN_ON_GPU)
                 .build());
-    hands.setErrorListener((message, e) -> Log.e(TAG, "MediaPipe Hands error:" + message));
+    hands.setErrorListener((message, e) -> Log.e(TAG, "Kwik Capture error:" + message));
 
     if (inputSource == InputSource.CAMERA) {
       cameraInput = new CameraInput(this);

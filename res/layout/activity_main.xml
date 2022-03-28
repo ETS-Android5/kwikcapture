@@ -4,23 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <LinearLayout
-        android:id="@+id/buttonsStatic"
+    <FrameLayout
+        android:id="@+id/preview_display_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="?android:attr/buttonBarStyle" android:gravity="center"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/button_load_picture"
-            android:layout_width="wrap_content"
-            style="?android:attr/buttonBarButtonStyle" android:layout_height="wrap_content"
-            android:text="@string/load_picture" />
-        <Button
-            android:id="@+id/button_load_video"
-            android:layout_width="wrap_content"
-            style="?android:attr/buttonBarButtonStyle" android:layout_height="wrap_content"
-            android:text="@string/load_video" />
-    </LinearLayout>
+        android:layout_height="600dp">
+
+<!--        <TextView-->
+<!--            android:id="@+id/no_view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/instruction" />-->
+    </FrameLayout>
+
     <LinearLayout
         android:id="@+id/buttonsLive"
         android:layout_width="match_parent"
@@ -37,28 +33,10 @@
             android:layout_width="wrap_content"
             style="?android:attr/buttonBarButtonStyle" android:layout_height="wrap_content"
             android:text="@string/stop_camera" />
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/flutterScreen"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="?android:attr/buttonBarStyle" android:gravity="center"
-        android:orientation="horizontal">
         <Button
             android:id="@+id/flutter_screen"
             android:layout_width="wrap_content"
             style="?android:attr/buttonBarButtonStyle" android:layout_height="wrap_content"
             android:text="@string/flutter_screen" />
     </LinearLayout>
-    <FrameLayout
-        android:id="@+id/preview_display_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/no_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/instruction" />
-    </FrameLayout>
 </LinearLayout>

@@ -421,9 +421,9 @@
     <color name="cardview_light_background">#FFFFFFFF</color>
     <color name="cardview_shadow_end_color">#03000000</color>
     <color name="cardview_shadow_start_color">#37000000</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#FF5722</color>
+    <color name="colorPrimary">#170700</color>
+    <color name="colorPrimaryDark">#000000</color>
     <color name="design_bottom_navigation_shadow_color">#14000000</color>
     <color name="design_dark_default_color_background">#121212</color>
     <color name="design_dark_default_color_error">#CF6679</color>
@@ -1072,10 +1072,10 @@
     <string name="exposed_dropdown_menu_content_description">Show dropdown menu</string>
     <string name="fab_transformation_scrim_behavior" translatable="false">com.google.android.material.transformation.FabTransformationScrimBehavior</string>
     <string name="fab_transformation_sheet_behavior" translatable="false">com.google.android.material.transformation.FabTransformationSheetBehavior</string>
-    <string name="flutter_screen" translatable="false">Flutter Screen</string>
+    <string name="flutter_screen" translatable="false">Flutter</string>
     <string name="hide_bottom_view_on_scroll_behavior" translatable="false">com.google.android.material.behavior.HideBottomViewOnScrollBehavior</string>
     <string description="Content description for an icon that appears in the title area of a dialog" name="icon_content_description">Dialog Icon</string>
-    <string name="instruction" translatable="false">Please press any button above to start</string>
+    <string name="instruction" translatable="false">Please press any button below to start</string>
     <string name="item_view_role_description">Tab</string>
     <string name="load_picture" translatable="false">Load Picture</string>
     <string name="load_video" translatable="false">Load Video</string>
@@ -1135,9 +1135,9 @@
     <string name="path_password_eye_mask_visible" translatable="false">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
     <string name="search_menu_title">Search</string>
-    <string name="start_camera" translatable="false">Start Camera</string>
+    <string name="start_camera" translatable="false">Start</string>
     <string name="status_bar_notification_info_overflow">999+</string>
-    <string name="stop_camera" translatable="false">Stop Camera</string>
+    <string name="stop_camera" translatable="false">Stop</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="AndroidThemeColorAccentYellow" ns2:ignore="NewApi">

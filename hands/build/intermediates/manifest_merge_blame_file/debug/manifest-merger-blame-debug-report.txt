@@ -40,8 +40,8 @@
 24        android:debuggable="true"
 25        android:icon="@mipmap/ic_launcher"
 25-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:22:7-41
-26        android:label="MediaPipe Hands"
-26-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:23:7-38
+26        android:label="Kwik Capture"
+26-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:23:7-35
 27        android:roundIcon="@mipmap/ic_launcher_round"
 27-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:24:7-52
 28        android:supportsRtl="true"

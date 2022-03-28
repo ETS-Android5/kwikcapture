@@ -236,7 +236,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/dhru
 	android:supportsRtl
 		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:25:7-33
 	android:label
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:23:7-38
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:23:7-35
 	android:roundIcon
 		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:24:7-52
 	android:icon
