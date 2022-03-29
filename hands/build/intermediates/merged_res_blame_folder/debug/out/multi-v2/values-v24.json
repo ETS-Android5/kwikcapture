@@ -4,7 +4,7 @@
             "outputFile": "/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "/Users/dhruvilpatel/.gradle/caches/transforms-3/e18c070f1864df6fb6e352b4869d92c2/transformed/appcompat-1.3.0/res/values-v24/values-v24.xml",
+                    "source": "/Users/dhruvilpatel/.gradle/caches/transforms-3/70b12d21d727667130538b281793900e/transformed/appcompat-1.3.0/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

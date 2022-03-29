@@ -212,7 +212,7 @@ public class HandsResultGlRenderer implements ResultGlRenderer<HandsResult> {
         vertices[currentIndex + 2] = 0;
       }
     }
-    Log.i("REC", Arrays.toString(vertices));
+//    Log.i("REC", Arrays.toString(vertices));
     FloatBuffer vertexBuffer =
         ByteBuffer.allocateDirect(vertices.length * 4) // 1452
             .order(ByteOrder.nativeOrder())

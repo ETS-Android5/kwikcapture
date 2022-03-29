@@ -29,14 +29,16 @@
             style="?android:attr/buttonBarButtonStyle" android:layout_height="wrap_content"
             android:text="@string/start_camera" />
         <Button
-            android:id="@+id/button_stop_camera"
-            android:layout_width="wrap_content"
-            style="?android:attr/buttonBarButtonStyle" android:layout_height="wrap_content"
-            android:text="@string/stop_camera" />
-        <Button
             android:id="@+id/flutter_screen"
             android:layout_width="wrap_content"
             style="?android:attr/buttonBarButtonStyle" android:layout_height="wrap_content"
             android:text="@string/flutter_screen" />
+        <Button
+            android:id="@+id/button_capture_image"
+            android:background="@color/colorPrimary"
+            android:padding="@dimen/rect_button_margin"
+            android:layout_width="wrap_content"
+            style="?android:attr/buttonBarButtonStyle" android:layout_height="wrap_content"
+            android:text="@string/capture_image" />
     </LinearLayout>
 </LinearLayout>

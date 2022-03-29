@@ -4,7 +4,7 @@
             "outputFile": "/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w320dp-land-v13/values-w320dp-land-v13.xml",
             "map": [
                 {
-                    "source": "/Users/dhruvilpatel/.gradle/caches/transforms-3/17c02f9f22a0ce618d4434a27b35da45/transformed/material-1.3.0/res/values-w320dp-land-v13/values-w320dp-land-v13.xml",
+                    "source": "/Users/dhruvilpatel/.gradle/caches/transforms-3/cbb58f6696e30a127f990bd119fde004/transformed/material-1.3.0/res/values-w320dp-land-v13/values-w320dp-land-v13.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
