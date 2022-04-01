@@ -16,11 +16,15 @@ package com.google.mediapipe.examples.hands;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.hardware.camera2.CameraManager;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatImageView;
@@ -54,6 +58,7 @@ public class HandsResultImageView extends AppCompatImageView {
   private static final int RIGHT_HAND_LANDMARK_COLOR = Color.parseColor("#30FF30");
   private static final int LANDMARK_RADIUS = 10; // Pixels
   private Bitmap latest;
+  private HandsResult lResult;
 
   public HandsResultImageView(Context context) {
     super(context);
@@ -76,25 +81,30 @@ public class HandsResultImageView extends AppCompatImageView {
     int height = bmInput.getHeight();
 
 //    latest = Bitmap.createBitmap(width, height, bmInput.getConfig()); // old
-
+    lResult = result;
 
     Matrix matrix = new Matrix();
     matrix.postRotate(180);
     matrix.postScale(-1, 1, width / 2f, height / 2f);
     latest = Bitmap.createBitmap(
             bmInput, 0, 0, width, height, matrix, true);
-    Canvas canvas = new Canvas(latest);
 
-    canvas.drawBitmap(latest, new Matrix(), null);
-    int numHands = result.multiHandLandmarks().size();
-    for (int i = 0; i < numHands; ++i) {
-      drawLandmarksOnCanvas(
-          result.multiHandLandmarks().get(i).getLandmarkList(),
-          result.multiHandedness().get(i).getLabel().equals("Left"),
-          canvas,
-          width,
-          height);
-    }
+    // ==== DRAW RECTANGLES ON IMAGE ====
+//    Canvas canvas = new Canvas(latest);
+//    canvas.drawBitmap(latest, new Matrix(), null);
+//    int numHands = result.multiHandLandmarks().size();
+//
+//    if(numHands > 0) {
+//        for (int i = 0; i < numHands; ++i) {
+//          drawLandmarksOnCanvas(
+//                  result.multiHandLandmarks().get(i).getLandmarkList(),
+//                  result.multiHandedness().get(i).getLabel().equals("Left"),
+//                  canvas,
+//                  width,
+//                  height);
+//        }
+//    }
+
   }
 
   private void drawLandmarksOnCanvas(List<NormalizedLandmark> handLandmarkList, boolean isLeftHand,
@@ -152,11 +162,17 @@ public class HandsResultImageView extends AppCompatImageView {
 
   private void drawRectOnImage(Canvas canvas, NormalizedLandmark normalizedLandmark,
                      Paint paint, int width, int height) {
+
+    System.out.println("=== left: "+((normalizedLandmark.getX() * width) - 65)
+            +", top: "+((normalizedLandmark.getY() * height) - 55)
+            +", right: "+((normalizedLandmark.getX() * width) + 55)
+            +", bottom: "+((normalizedLandmark.getY() * height) + 105));
+
     canvas.drawRect(
-            (normalizedLandmark.getX() * width) - 55,
-            (normalizedLandmark.getY() * height) - 45,
-            (normalizedLandmark.getX() * width) + 45,
-            (normalizedLandmark.getY() * height) + 95,
+            (normalizedLandmark.getX() * width) - 65,
+            (normalizedLandmark.getY() * height) - 55,
+            (normalizedLandmark.getX() * width) + 55,
+            (normalizedLandmark.getY() * height) + 105,
             paint);
   }
 
@@ -168,7 +184,145 @@ public class HandsResultImageView extends AppCompatImageView {
     }
   }
 
-  public void captureImage(Context context) throws IOException {
+  public Bitmap toGrayscale(Bitmap bmpOriginal) {
+    int width, height;
+    height = bmpOriginal.getHeight();
+    width = bmpOriginal.getWidth();
+  // == RGB_565: 3, ARGB_8888: 2, ARGB_4444: 1
+    Bitmap bmpGrayscale = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+    Canvas c = new Canvas(bmpGrayscale);
+    Paint paint = new Paint();
+    ColorMatrix cm = new ColorMatrix();
+    cm.setSaturation(0);
+    ColorMatrixColorFilter f = new ColorMatrixColorFilter(cm);
+    paint.setColorFilter(f);
+    c.drawBitmap(bmpOriginal, 0, 0, paint);
+    return bmpGrayscale;
+  }
+
+  /**
+   *
+   * @param bmp input bitmap
+   * @param contrast 0..10 1 -- 1 is default
+   * @param brightness -255..255 -- 0 is default
+   * @return new bitmap
+   */
+  public static Bitmap changeBitmapContrastBrightness(Bitmap bmp, float contrast, float brightness) {
+    ColorMatrix cm = new ColorMatrix(new float[]
+            {
+                    contrast, 0, 0, 0, brightness,
+                    0, contrast, 0, 0, brightness,
+                    0, 0, contrast, 0, brightness,
+                    0, 0, 0, 1, 0
+            });
+
+    Bitmap ret = Bitmap.createBitmap(bmp.getWidth(), bmp.getHeight(), bmp.getConfig());
+
+    Canvas canvas = new Canvas(ret);
+
+    Paint paint = new Paint();
+    paint.setColorFilter(new ColorMatrixColorFilter(cm));
+    canvas.drawBitmap(bmp, 0, 0, paint);
+
+    return ret;
+  }
+
+  private int hueChange(int startpixel,int deg){
+    float[] hsv = new float[3];       //array to store HSV values
+    Color.colorToHSV(startpixel,hsv); //get original HSV values of pixel
+    hsv[0]=hsv[0]+deg;                //add the shift to the HUE of HSV array
+    hsv[0]=hsv[0]%360;                //confines hue to values:[0,360]
+    return Color.HSVToColor(Color.alpha(startpixel),hsv);
+  }
+  private Bitmap adjustedHue(Bitmap o, int deg)
+  {
+    Bitmap srca = o;
+    Bitmap bitmap = srca.copy(Bitmap.Config.ARGB_8888, true);
+    for(int x = 0;x < bitmap.getWidth();x++)
+      for(int y = 0;y < bitmap.getHeight();y++){
+        int newPixel = hueChange(bitmap.getPixel(x,y),deg);
+        bitmap.setPixel(x, y, newPixel);
+      }
+
+    return bitmap;
+  }
+
+  public Bitmap sharpen(Bitmap src, double weight) {
+    double[][] SharpConfig = new double[][] {
+            { 0 , -2    , 0  },
+            { -2, weight, -2 },
+            { 0 , -2    , 0  }
+    };
+    ConvolutionMatrix convMatrix = new ConvolutionMatrix(3);
+    convMatrix.applyConfig(SharpConfig);
+    convMatrix.Factor = weight - 8;
+    return ConvolutionMatrix.computeConvolution3x3(src, convMatrix);
+  }
+
+  public Bitmap compress(Bitmap yourBitmap){
+    //converted into webp into lowest quality
+    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+    yourBitmap.compress(Bitmap.CompressFormat.WEBP,0,stream);//0=lowest, 100=highest quality
+    byte[] byteArray = stream.toByteArray();
+
+
+    //convert your byteArray into bitmap
+    return BitmapFactory.decodeByteArray(byteArray,0,byteArray.length);
+  }
+
+  public void createFileAndSaveImage(Context context, NormalizedLandmark landmark, boolean isLeft,
+                                     File dir, Bitmap bitmap, String uniqueId, String setNo,
+                                     int fingerNo) throws IOException {
+    Toast saveFileToast = Toast.makeText(context, "", Toast.LENGTH_SHORT);
+    String date = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS", Locale.US)
+            .format(System.currentTimeMillis());
+    File f = new File(dir.getAbsolutePath() + File.separator,
+            "kwikCapture_"+uniqueId+"_Set-"+setNo+"_Finger-"+fingerNo+"_" + date + ".png");
+
+    boolean createdFile = f.createNewFile();
+    System.out.println("==== file created: "+createdFile+", filePath: "+f.getAbsolutePath());
+
+    float width = bitmap.getWidth();
+    float height = bitmap.getHeight();
+
+    System.out.println("=== bitmap: w: "+width+", h: "+height);
+    int left = (int) (landmark.getX() * width) - 70; // x
+    int top = (int) (landmark.getY() *  height) - 60; // y
+    int right = 120; // width
+    int bottom = 170; // height
+    System.out.println("=== bitmap: left: "+left+", top: "+top+", right: "+right+", bottom: "+bottom+ ", fingerNo: "+fingerNo);
+
+    if(left + right > width) {
+      right = (int) (right - (width - (left+right)));
+    }
+
+//    Matrix matrix = new Matrix();
+//    matrix.postScale((float) 500 / bitmap.getWidth(), (float) 500 / bitmap.getHeight());
+    Bitmap cBitmap = Bitmap.createBitmap(bitmap, left, top, right, bottom); // bitmap, x, y, width, height
+    Bitmap scaledBitmap = Bitmap.createScaledBitmap(cBitmap, 350, 500, false);
+//    cBitmap.setPixel(500, 500, 0);
+
+    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+    scaledBitmap.compress(Bitmap.CompressFormat.PNG, 100 /*ignored for PNG*/, bos);
+    byte[] bitmapData = bos.toByteArray();
+
+    //write the bytes in file
+    FileOutputStream fos = new FileOutputStream(f);
+    fos.write(bitmapData);
+
+    fos.flush();
+    fos.close();
+
+    if(fingerNo == 10 || fingerNo == 5) {
+      saveFileToast.setText("Files created successfully!");
+      saveFileToast.show();
+    }
+  }
+
+  public void captureImage(Context context, String uniqueId, String setNo) throws IOException {
+    Toast statusToast = Toast.makeText(context, "", Toast.LENGTH_LONG);
+    Toast doneToast = Toast.makeText(context, "", Toast.LENGTH_LONG);
+
     if (latest != null) {
       File dir = new File("/storage/emulated/0/DCIM"+File.separator, "Kwik Capture");
       // Dir: /storage/emulated/0/DCIM/KwikCapture
@@ -179,24 +333,55 @@ public class HandsResultImageView extends AppCompatImageView {
         System.out.println("==== dir already exists -- dirPath: "+dir.getAbsolutePath());
       }
 
-      File f = new File(dir.getAbsolutePath() + File.separator,
-              new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS", Locale.US)
-                      .format(System.currentTimeMillis()) + ".jpg");
+      File dir2 = new File("/storage/emulated/0/DCIM/Kwik Capture"+File.separator, uniqueId);
+      // Dir: /storage/emulated/0/DCIM/KwikCapture
+      if(!dir2.exists()) {
+        boolean createdDir2 = dir2.mkdir();
+        System.out.println("==== dir2 created: "+createdDir2+", dirPath: "+dir2.getAbsolutePath());
+      } else {
+        System.out.println("==== dir2 already exists -- dirPath: "+dir2.getAbsolutePath());
+      }
 
-      boolean createdFile = f.createNewFile();
-      System.out.println("==== file created: "+createdFile+", filePath: "+f.getAbsolutePath());
+      List<NormalizedLandmark> handLandmarkList;
+      boolean isLeftHand;
+      if(lResult.multiHandLandmarks().size() == 1) {
 
-      Bitmap bitmap = latest;
-      ByteArrayOutputStream bos = new ByteArrayOutputStream();
-      bitmap.compress(Bitmap.CompressFormat.JPEG, 100 /*ignored for PNG*/, bos);
-      byte[] bitmapData = bos.toByteArray();
+        statusToast.setText("Processing images...");
+        statusToast.setDuration(Toast.LENGTH_LONG);
+        statusToast.show();
 
-      //write the bytes in file
-      FileOutputStream fos = new FileOutputStream(f);
-      fos.write(bitmapData);
-      Toast.makeText(context, "Saved image!.", Toast.LENGTH_SHORT).show();
-      fos.flush();
-      fos.close();
+        handLandmarkList = lResult.multiHandLandmarks().get(0).getLandmarkList();
+        isLeftHand = lResult.multiHandedness().get(0).getLabel().equals("Left");
+
+        System.out.println("==== isLeft: "+isLeftHand+", label: "+lResult.multiHandedness().get(0).getLabel());
+
+        NormalizedLandmark indexFingerTipLandmark = handLandmarkList.get(HandLandmark.INDEX_FINGER_TIP);
+        NormalizedLandmark middleFingerTipLandmark = handLandmarkList.get(HandLandmark.MIDDLE_FINGER_TIP);
+        NormalizedLandmark ringFingerTipLandmark = handLandmarkList.get(HandLandmark.RING_FINGER_TIP);
+        NormalizedLandmark pinkyTipLandmark = handLandmarkList.get(HandLandmark.PINKY_TIP);
+
+        latest = toGrayscale(latest);
+//        latest = sharpen(latest, 10);
+//        latest = changeBitmapContrastBrightness(latest, 4, -20);
+        latest = adjustedHue(latest, 180);
+
+        statusToast.setText("Creating files...");
+        statusToast.show();
+
+        createFileAndSaveImage(context, indexFingerTipLandmark, isLeftHand, dir2, latest, uniqueId, setNo, isLeftHand ? 2 : 7);
+        createFileAndSaveImage(context, middleFingerTipLandmark, isLeftHand, dir2, latest, uniqueId, setNo, isLeftHand ? 3 : 8);
+        createFileAndSaveImage(context, ringFingerTipLandmark, isLeftHand, dir2, latest, uniqueId, setNo, isLeftHand ? 4 : 9);
+        createFileAndSaveImage(context, pinkyTipLandmark, isLeftHand, dir2, latest, uniqueId, setNo, isLeftHand ? 5 : 10);
+
+        doneToast.setText("Completed saving images!");
+        doneToast.show();
+
+      } else {
+        statusToast.setText("Palm not detected, try again!");
+        statusToast.show();
+      }
+      System.out.println("==== DONE ====");
+
     } else {
       System.out.println("=== latest is null");
     }

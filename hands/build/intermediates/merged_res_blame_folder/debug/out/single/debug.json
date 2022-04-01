@@ -32,6 +32,10 @@
         "source": "/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/build/generated/res/pngs/debug/drawable-hdpi/ic_shutter_focused.png"
     },
     {
+        "merged": "/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/build/intermediates/res/merged/debug/layout_dialog.xml.flat",
+        "source": "/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/res/layout/dialog.xml"
+    },
+    {
         "merged": "/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher_round.png.flat",
         "source": "/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
     },
@@ -58,10 +62,6 @@
     {
         "merged": "/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/build/intermediates/res/merged/debug/drawable-xhdpi_ic_switch.png.flat",
         "source": "/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/build/generated/res/pngs/debug/drawable-xhdpi/ic_switch.png"
-    },
-    {
-        "merged": "/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/build/intermediates/res/merged/debug/layout_camera_ui_container.xml.flat",
-        "source": "/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/res/layout/camera_ui_container.xml"
     },
     {
         "merged": "/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/build/intermediates/res/merged/debug/drawable-ldpi_ic_switch.png.flat",

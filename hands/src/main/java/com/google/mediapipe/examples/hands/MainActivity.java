@@ -1,36 +1,35 @@
-// Copyright 2021 The MediaPipe Authors.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//      http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 package com.google.mediapipe.examples.hands;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.provider.MediaStore;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.Toast;
+
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.exifinterface.media.ExifInterface;
+import androidx.fragment.app.DialogFragment;
 // ContentResolver dependency
 import com.google.mediapipe.formats.proto.LandmarkProto.Landmark;
 import com.google.mediapipe.formats.proto.LandmarkProto.NormalizedLandmark;
-import com.google.mediapipe.solutioncore.CameraInput;
 import com.google.mediapipe.solutioncore.SolutionGlSurfaceView;
 import com.google.mediapipe.solutioncore.VideoInput;
 import com.google.mediapipe.solutions.hands.HandLandmark;
@@ -47,6 +46,7 @@ import io.flutter.embedding.engine.dart.DartExecutor;
 /** Main activity of MediaPipe Hands app. */
 public class MainActivity extends AppCompatActivity {
   private static final String TAG = "MainActivity";
+  final Context context = this;
 
   private Hands hands;
   // Run the pipeline and the model inference on GPU or CPU.
@@ -67,20 +67,30 @@ public class MainActivity extends AppCompatActivity {
   private VideoInput videoInput;
   private ActivityResultLauncher<Intent> videoGetter;
   // Live camera demo UI and camera components.
-  private CameraInput cameraInput;
-
+  private KCCameraInput cameraInput;
   private SolutionGlSurfaceView<HandsResult> glSurfaceView;
 
   public FlutterEngine flutterEngine;
+
+  private CameraManager camManager;
+  ImageButton captureImageButton;
+  Button stopCameraButton;
+  Button startCameraButton;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+
+    startCameraButton = findViewById(R.id.button_start_camera);
+    stopCameraButton = findViewById(R.id.button_stop_camera);
+    captureImageButton = findViewById(R.id.button_capture_image);
+
     setupStaticImageDemoUiComponents();
     setupVideoDemoUiComponents();
     setupLiveDemoUiComponents();
-    setupFlutterScreenInit();
+    stopLiveDemoUiComponent();
+//    setupFlutterScreenInit();
     setupCaptureImageUiComponents();
 
     // Instantiate a FlutterEngine.
@@ -102,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     super.onResume();
     if (inputSource == InputSource.CAMERA) {
       // Restarts the camera and the opengl surface rendering.
-      cameraInput = new CameraInput(this);
+      cameraInput = new KCCameraInput(this);
       cameraInput.setNewFrameListener(textureFrame -> hands.send(textureFrame));
       glSurfaceView.post(this::startCamera);
       glSurfaceView.setVisibility(View.VISIBLE);
@@ -222,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
     // Connects MediaPipe Hands solution to the user-defined HandsResultImageView.
     hands.setResultListener(
         handsResult -> {
-          logIndexFingerTipLandmark(handsResult);
+//          logIndexFingerTipLandmark(handsResult);
           imageView.setHandsResult(handsResult);
           runOnUiThread(() -> imageView.update());
         });
@@ -270,49 +280,95 @@ public class MainActivity extends AppCompatActivity {
   }
 
   /** Sets up the UI components for the live demo with camera input. */
-  private void setupFlutterScreenInit() {
-    Button startCameraButton = findViewById(R.id.flutter_screen);
-
-    startCameraButton.setOnClickListener(
-      v -> {
-        startActivity(
-          FlutterActivity
-            .withCachedEngine("my_engine_id")
-            .build(getApplicationContext())
-        );
-      });
-  }
+//  private void setupFlutterScreenInit() {
+//    Button startCameraButton = findViewById(R.id.flutter_screen);
+//
+//    startCameraButton.setOnClickListener(
+//      v -> {
+//        startActivity(
+//          FlutterActivity
+//            .withCachedEngine("my_engine_id")
+//            .build(getApplicationContext())
+//        );
+//      });
+//  }
 
 
   /** Sets up the UI components for the live demo with camera input. */
   private void setupLiveDemoUiComponents() {
-    Button startCameraButton = findViewById(R.id.button_start_camera);
     startCameraButton.setOnClickListener(
       v -> {
         if (inputSource == InputSource.CAMERA) {
           return;
         }
-//        stopCurrentPipeline();
+        startCameraButton.setVisibility(View.GONE);
+        captureImageButton.setVisibility(View.VISIBLE);
+        stopCameraButton.setVisibility(View.VISIBLE);
         setupStreamingModePipeline(InputSource.CAMERA);
       });
   }
 
+  private void stopLiveDemoUiComponent() {
+      stopCameraButton.setOnClickListener(
+              v -> {
+                stopCamera();
+                stopCameraButton.setVisibility(View.GONE);
+              });
+  }
+
+  public void showConfirmationDialog() {
+    LayoutInflater li = LayoutInflater.from(context);
+    View promptsView = li.inflate(R.layout.dialog, null);
+
+    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+    alertDialogBuilder.setView(promptsView);
+
+    final EditText uniqueId = promptsView.findViewById(R.id.uniqueId);
+    final EditText setNo = promptsView.findViewById(R.id.setNo);
+
+    alertDialogBuilder
+            .setTitle("Confirm file details")
+            .setMessage("Following details are used for file naming")
+            .setCancelable(false)
+            .setPositiveButton("Save",
+                    (dialog, id) -> {
+                      System.out.println("==== uniqueId: "+uniqueId.getText()
+                              +", setNo: "+setNo.getText());
+
+                      new android.os.Handler(Looper.getMainLooper()).postDelayed(
+                        () -> {
+                          try {
+                            imageView.captureImage(getApplicationContext(),
+                                    uniqueId.getText().toString(), setNo.getText().toString());
+                          } catch (IOException e) {
+                            System.out.println("===== CAUGHT EXCEPTION IMAGE CAP: " + e.getMessage());
+                            e.printStackTrace();
+                          }
+//                          stopCamera();
+                          System.out.println("====== STOP :: CAPTURE IMAGE ===== ");
+                        }, 1000);
+                    })
+            .setNegativeButton("Cancel",
+                    (dialog, id) -> dialog.cancel());
+
+    AlertDialog alertDialog = alertDialogBuilder.create();
+    alertDialog.show();
+  }
+
   /** Capture image */
   private void setupCaptureImageUiComponents() {
-    Button captureImageButton = findViewById(R.id.button_capture_image);
-    captureImageButton.setOnClickListener(
-            v -> {
-              System.out.println("====== START :: CAPTURE IMAGE =====");
-              try {
-                imageView.captureImage(getApplicationContext());
-              } catch (IOException e) {
-                System.out.println("===== CAUGHT EXCEPTION IMAGE CAP: "+e.getMessage());
-                e.printStackTrace();
+    if(captureImageButton != null) {
+      captureImageButton.setOnClickListener(
+              v -> {
+                stopCamera();
+                System.out.println("====== START :: CAPTURE IMAGE =====");
+                showConfirmationDialog();
+//                new android.os.Handler(Looper.getMainLooper()).postDelayed(
+//                        () -> { },
+//                        1000);
               }
-              stopCamera();
-              System.out.println("====== STOP :: CAPTURE IMAGE ===== ");
-            }
-    );
+      );
+    }
   }
 
   /** Sets up core workflow for streaming mode. */
@@ -330,7 +386,7 @@ public class MainActivity extends AppCompatActivity {
     hands.setErrorListener((message, e) -> Log.e(TAG, "Kwik Capture error:" + message));
 
     if (inputSource == InputSource.CAMERA) {
-      cameraInput = new CameraInput(this);
+      cameraInput = new KCCameraInput(this);
       cameraInput.setNewFrameListener(textureFrame -> hands.send(textureFrame));
     } else if (inputSource == InputSource.VIDEO) {
       videoInput = new VideoInput(this);
@@ -344,7 +400,7 @@ public class MainActivity extends AppCompatActivity {
     glSurfaceView.setRenderInputImage(true);
     hands.setResultListener(
         handsResult -> {
-          logIndexFingerTipLandmark(handsResult);
+//          logIndexFingerTipLandmark(handsResult);
 
           imageView.setHandsResult(handsResult);
           runOnUiThread(() -> imageView.update());
@@ -372,12 +428,15 @@ public class MainActivity extends AppCompatActivity {
     cameraInput.start(
         this,
         hands.getGlContext(),
-        CameraInput.CameraFacing.BACK,
+        KCCameraInput.CameraFacing.BACK,
         glSurfaceView.getWidth(),
         glSurfaceView.getHeight());
   }
 
   private void stopCamera() {
+    captureImageButton.setVisibility(View.GONE);
+    stopCameraButton.setVisibility(View.GONE);
+    startCameraButton.setVisibility(View.VISIBLE);
     if(inputSource == InputSource.CAMERA) {
       inputSource = InputSource.UNKNOWN;
     }
@@ -420,7 +479,10 @@ public class MainActivity extends AppCompatActivity {
     }
     NormalizedLandmark indexFingerTipLandmark =
         result.multiHandLandmarks().get(0).getLandmarkList().get(HandLandmark.INDEX_FINGER_TIP);
-//     For Bitmaps, show the pixel values. For texture inputs, show the normalized coordinates.
+
+//    ==== coordinates (in pixels): x=129.899048, y=410.691040
+//    ==== normalized coordinates (value range: [0, 1]): x=0.169139, y=0.401065
+//    ==== world coordinates (in meters): x=-0.027425 m, y=-0.077076 m, z=-0.048086 m
 
       int width = result.inputBitmap().getWidth();
       int height = result.inputBitmap().getHeight();
@@ -441,5 +503,36 @@ public class MainActivity extends AppCompatActivity {
             "==== world coordinates (in meters): x=%f m, y=%f m, z=%f m",
                 indexFingerTipWorldLandmark.getX(), indexFingerTipWorldLandmark.getY(),
                 indexFingerTipWorldLandmark.getZ()));
+
+//    NormalizedLandmark fifthLandmark =
+//            result.multiHandLandmarks().get(0).getLandmarkList().get(HandLandmark.INDEX_FINGER_MCP);
+//    NormalizedLandmark seventeenthLandmark =
+//            result.multiHandLandmarks().get(0).getLandmarkList().get(HandLandmark.PINKY_MCP);
+//
+//    double distance = Math.sqrt(
+//            Math.pow(((seventeenthLandmark.getY() * height) - (fifthLandmark.getY() * height)), 2)
+//                    + Math.pow(((seventeenthLandmark.getX() * width) - (fifthLandmark.getX() * width)), 2));
+
+//    runOnUiThread(() -> {
+//      Toast mToast = Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT);
+//
+//      if (distance < 380.0) {
+//        if(mToast!=null) {
+//          mToast.setText("Bring closer");
+//          mToast.show();
+//        }
+//      } else if (distance > 450.0) {
+//        if(mToast!=null) {
+//          mToast.setText("Move back");
+//          mToast.show();
+//        }
+//      } else {
+//        if(mToast!=null) {
+//          mToast.cancel();
+//        }
+//      }
+//    });
+//    Log.i(TAG, "\n======== distance: "+distance+" =========\n");
+
   }
 }

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#170700</color>
+    <color name="colorPrimary">#030100</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FF5722</color>
+    <color name="white">#FFFFFFFF</color>
     <color name="icActive">#FFFFFFFF</color>
     <color name="icFocused">#DDFFFFFF</color>
     <color name="icPressed">#AAFFFFFF</color>

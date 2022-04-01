@@ -16,6 +16,7 @@ package com.google.mediapipe.examples.hands;
 
 import android.opengl.GLES20;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.mediapipe.formats.proto.LandmarkProto.NormalizedLandmark;
 import com.google.mediapipe.solutioncore.ResultGlRenderer;
@@ -82,6 +83,8 @@ public class HandsResultGlRenderer implements ResultGlRenderer<HandsResult> {
 
   @Override
   public void renderResult(HandsResult result, float[] projectionMatrix) {
+    int width = 768;
+    int height = 1024;
     if (result == null) {
       return;
     }
@@ -90,33 +93,47 @@ public class HandsResultGlRenderer implements ResultGlRenderer<HandsResult> {
     GLES20.glLineWidth(CONNECTION_THICKNESS);
 
     int numHands = result.multiHandLandmarks().size();
-    for (int i = 0; i < numHands; ++i) {
-      boolean isLeftHand = result.multiHandedness().get(i).getLabel().equals("Left");
+
+    if(result.multiHandLandmarks().size() > 0) {
+
+      NormalizedLandmark fifthLandmark =
+              result.multiHandLandmarks().get(0).getLandmarkList().get(HandLandmark.INDEX_FINGER_MCP);
+      NormalizedLandmark seventeenthLandmark =
+              result.multiHandLandmarks().get(0).getLandmarkList().get(HandLandmark.PINKY_MCP);
+
+      double distance = Math.sqrt(
+              Math.pow(((seventeenthLandmark.getY() * height) - (fifthLandmark.getY() * height)), 2)
+                      + Math.pow(((seventeenthLandmark.getX() * width) - (fifthLandmark.getX() * width)), 2));
+      System.out.println("\n======== distance: " + distance + " =========\n");
+
+      if (distance >= 300 && distance <= 450) {
+        for (int i = 0; i < numHands; ++i) {
+          boolean isLeftHand = result.multiHandedness().get(i).getLabel().equals("Left");
 //      drawConnections(
 //          result.multiHandLandmarks().get(i).getLandmarkList(),
 //          isLeftHand ? LEFT_HAND_CONNECTION_COLOR : RIGHT_HAND_CONNECTION_COLOR);
-      NormalizedLandmark indexFingerTipLandmark =
-              result.multiHandLandmarks().get(i).getLandmarkList().get(HandLandmark.INDEX_FINGER_TIP);
-      NormalizedLandmark middleFingerTipLandmark =
-              result.multiHandLandmarks().get(i).getLandmarkList().get(HandLandmark.MIDDLE_FINGER_TIP);
-      NormalizedLandmark ringFingerTipLandmark =
-              result.multiHandLandmarks().get(i).getLandmarkList().get(HandLandmark.RING_FINGER_TIP);
-      NormalizedLandmark pinkyTipLandmark =
-              result.multiHandLandmarks().get(i).getLandmarkList().get(HandLandmark.PINKY_TIP);
+          NormalizedLandmark indexFingerTipLandmark =
+                  result.multiHandLandmarks().get(i).getLandmarkList().get(HandLandmark.INDEX_FINGER_TIP);
+          NormalizedLandmark middleFingerTipLandmark =
+                  result.multiHandLandmarks().get(i).getLandmarkList().get(HandLandmark.MIDDLE_FINGER_TIP);
+          NormalizedLandmark ringFingerTipLandmark =
+                  result.multiHandLandmarks().get(i).getLandmarkList().get(HandLandmark.RING_FINGER_TIP);
+          NormalizedLandmark pinkyTipLandmark =
+                  result.multiHandLandmarks().get(i).getLandmarkList().get(HandLandmark.PINKY_TIP);
 
-      drawRectangle(indexFingerTipLandmark.getX(), indexFingerTipLandmark.getY(), isLeftHand ? LEFT_HAND_HOLLOW_CIRCLE_COLOR : RIGHT_HAND_HOLLOW_CIRCLE_COLOR);
-      drawRectangle(middleFingerTipLandmark.getX(), middleFingerTipLandmark.getY(), isLeftHand ? LEFT_HAND_HOLLOW_CIRCLE_COLOR : RIGHT_HAND_HOLLOW_CIRCLE_COLOR);
-      drawRectangle(ringFingerTipLandmark.getX(), ringFingerTipLandmark.getY(), isLeftHand ? LEFT_HAND_HOLLOW_CIRCLE_COLOR : RIGHT_HAND_HOLLOW_CIRCLE_COLOR);
-      drawRectangle(pinkyTipLandmark.getX(), pinkyTipLandmark.getY(), isLeftHand ? LEFT_HAND_HOLLOW_CIRCLE_COLOR : RIGHT_HAND_HOLLOW_CIRCLE_COLOR);
+          drawRectangle(indexFingerTipLandmark.getX(), indexFingerTipLandmark.getY(), isLeftHand ? LEFT_HAND_HOLLOW_CIRCLE_COLOR : RIGHT_HAND_HOLLOW_CIRCLE_COLOR);
+          drawRectangle(middleFingerTipLandmark.getX(), middleFingerTipLandmark.getY(), isLeftHand ? LEFT_HAND_HOLLOW_CIRCLE_COLOR : RIGHT_HAND_HOLLOW_CIRCLE_COLOR);
+          drawRectangle(ringFingerTipLandmark.getX(), ringFingerTipLandmark.getY(), isLeftHand ? LEFT_HAND_HOLLOW_CIRCLE_COLOR : RIGHT_HAND_HOLLOW_CIRCLE_COLOR);
+          drawRectangle(pinkyTipLandmark.getX(), pinkyTipLandmark.getY(), isLeftHand ? LEFT_HAND_HOLLOW_CIRCLE_COLOR : RIGHT_HAND_HOLLOW_CIRCLE_COLOR);
 
 
 //      for (NormalizedLandmark landmark : result.multiHandLandmarks().get(i).getLandmarkList().) {
-        // Draws the landmark.
+          // Draws the landmark.
 //        drawCircle(
 //            landmark.getX(),
 //            landmark.getY(),
 //            isLeftHand ? LEFT_HAND_LANDMARK_COLOR : RIGHT_HAND_LANDMARK_COLOR);
-        // Draws a hollow circle around the landmark.
+          // Draws a hollow circle around the landmark.
 //        drawHollowCircle(
 //            landmark.getX(),
 //            landmark.getY(),
@@ -126,6 +143,8 @@ public class HandsResultGlRenderer implements ResultGlRenderer<HandsResult> {
 //            landmark.getY(),
 //            isLeftHand ? LEFT_HAND_LANDMARK_COLOR : RIGHT_HAND_LANDMARK_COLOR);
 //      }
+        }
+      }
     }
   }
 

@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:2:1-49:12
-INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:2:1-49:12
-INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:2:1-49:12
-INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:2:1-49:12
+ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:2:1-55:12
+INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:2:1-55:12
+INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:2:1-55:12
+INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:2:1-55:12
 MERGED from [androidx.navigation:navigation-ui-ktx:2.3.5] /Users/dhruvilpatel/.gradle/caches/transforms-3/8f96e414ed1769faf7d7195e4c0d8945/transformed/navigation-ui-ktx-2.3.5/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.navigation:navigation-ui:2.3.5] /Users/dhruvilpatel/.gradle/caches/transforms-3/7d9bb5c04cca827d2db40ae87595947d/transformed/navigation-ui-2.3.5/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.material:material:1.3.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/cbb58f6696e30a127f990bd119fde004/transformed/material-1.3.0/AndroidManifest.xml:17:1-24:12
@@ -68,22 +68,22 @@ MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/dhruvilpatel/.grad
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/1e34730b0c9950516d182a24a0108697/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/30c689fe200de11f20f73e95226fb137/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/5ee64ec38daa2b1f35ff2d4932b83f81/transformed/annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
-INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:2:1-49:12
-INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:2:1-49:12
-INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:2:1-49:12
+INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:2:1-55:12
+INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:2:1-55:12
+INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:2:1-55:12
 	package
 		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:4:5-50
 		INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml
 		INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:2:1-49:12
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:2:1-55:12
 		INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml
 	xmlns:tools
 		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:2:1-49:12
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:2:1-55:12
 		INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:2:11-69
@@ -231,36 +231,50 @@ INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src
 		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:7:7-33
 		INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml
 		INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml
-uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:12:3-78
-	android:name
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:12:20-75
-uses-permission#android.permission.CAMERA
-ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:14:3-63
-	android:name
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:14:20-60
 uses-feature#android.hardware.camera
-ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:15:3-58
+ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:12:3-58
 	android:name
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:15:17-55
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:12:17-55
+uses-feature#android.hardware.camera.autofocus
+ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:13:3-68
+	android:name
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:13:17-65
+uses-feature#android.hardware.camera.flash
+ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:14:3-89
+	android:required
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:14:62-86
+	android:name
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:14:17-61
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:17:3-78
+	android:name
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:17:20-75
+uses-permission#android.permission.CAMERA
+ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:19:3-63
+	android:name
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:19:20-60
+uses-permission#android.permission.FLASHLIGHT
+ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:20:3-66
+	android:name
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:20:20-64
 uses-permission#android.permission.INTERNET
-ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:17:3-65
+ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:23:3-65
 MERGED from [:flutter] /Users/dhruvilpatel/Documents/mediapipe-hands/kwik_cap_ui/.android/Flutter/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-67
 MERGED from [:flutter] /Users/dhruvilpatel/Documents/mediapipe-hands/kwik_cap_ui/.android/Flutter/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-67
 MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/8b125ef254d4fe316e78bfeb634dde10/transformed/transport-backend-cct-3.1.0/AndroidManifest.xml:26:5-67
 MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/8b125ef254d4fe316e78bfeb634dde10/transformed/transport-backend-cct-3.1.0/AndroidManifest.xml:26:5-67
 	android:name
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:17:20-62
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:23:20-62
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:18:3-77
+ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:24:3-77
 MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/8b125ef254d4fe316e78bfeb634dde10/transformed/transport-backend-cct-3.1.0/AndroidManifest.xml:25:5-79
 MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/8b125ef254d4fe316e78bfeb634dde10/transformed/transport-backend-cct-3.1.0/AndroidManifest.xml:25:5-79
 MERGED from [com.google.android.datatransport:transport-runtime:3.1.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/37daecb4c7851ccca1e75fe32093fdf7/transformed/transport-runtime-3.1.0/AndroidManifest.xml:22:5-79
 MERGED from [com.google.android.datatransport:transport-runtime:3.1.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/37daecb4c7851ccca1e75fe32093fdf7/transformed/transport-runtime-3.1.0/AndroidManifest.xml:22:5-79
 	android:name
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:18:20-74
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:24:20-74
 application
-ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:20:3-47:17
+ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:26:3-53:17
 MERGED from [com.google.android.material:material:1.3.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/cbb58f6696e30a127f990bd119fde004/transformed/material-1.3.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.3.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/cbb58f6696e30a127f990bd119fde004/transformed/material-1.3.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] /Users/dhruvilpatel/.gradle/caches/transforms-3/973afaab5225536c2aac367354bad165/transformed/constraintlayout-2.0.4/AndroidManifest.xml:9:5-20
@@ -288,47 +302,47 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/dhru
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.6.0] /Users/dhruvilpatel/.gradle/caches/transforms-3/717e832570c848058813447a1d42817d/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
 	android:supportsRtl
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:25:7-33
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:31:7-33
 	android:label
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:23:7-35
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:29:7-35
 	android:roundIcon
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:24:7-52
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:30:7-52
 	android:icon
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:22:7-41
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:28:7-41
 	android:allowBackup
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:21:7-33
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:27:7-33
 	android:theme
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:26:7-38
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:32:7-38
 activity#com.google.mediapipe.examples.hands.MainActivity
-ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:28:5-37:16
+ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:34:5-43:16
 	android:screenOrientation
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:30:9-47
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:36:9-47
 	android:exported
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:31:9-32
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:37:9-32
 	android:name
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:29:9-37
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:35:9-37
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:32:7-36:23
+ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:38:7-42:23
 action#android.intent.action.MAIN
-ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:33:9-61
+ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:39:9-61
 	android:name
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:33:17-58
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:39:17-58
 category#android.intent.category.LAUNCHER
-ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:35:9-69
+ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:41:9-69
 	android:name
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:35:19-66
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:41:19-66
 activity#io.flutter.embedding.android.FlutterActivity
-ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:39:5-45:9
+ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:45:5-51:9
 	android:hardwareAccelerated
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:43:9-43
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:49:9-43
 	android:windowSoftInputMode
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:44:9-51
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:50:9-51
 	android:configChanges
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:42:9-140
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:48:9-140
 	android:theme
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:41:9-43
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:47:9-43
 	android:name
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:40:9-68
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:46:9-68
 queries
 ADDED from [androidx.camera:camera-extensions:1.1.0-beta01] /Users/dhruvilpatel/.gradle/caches/transforms-3/134395566c89f2fff5553d8ec4b4fb70/transformed/camera-extensions-1.1.0-beta01/AndroidManifest.xml:24:5-28:15
 intent#action:name:androidx.camera.extensions.action.VENDOR_ACTION

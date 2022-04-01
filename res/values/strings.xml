@@ -5,9 +5,14 @@
     <string name="stop_camera" translatable="false">Stop</string>
     <string name="flutter_screen" translatable="false">Flutter</string>
     <string name="capture_image" translatable="false">Capture</string>
-    <string name="instruction" translatable="false">Please press any button below to start</string>
+    <string name="instruction" translatable="false">Please press START button below to open camera</string>
     <string name="switch_camera_button_alt">Switch camera</string>
     <string name="gallery_button_alt">Gallery</string>
     <string name="back_button_alt">Back</string>
     <string name="capture_button_alt">Capture</string>
+    <string name="file_details">File details</string>
+    <string name="username">Subject-241</string>
+    <string name="set_no">1</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 </resources>
