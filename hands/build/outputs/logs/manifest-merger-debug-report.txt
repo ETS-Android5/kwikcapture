@@ -72,7 +72,7 @@ INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src
 INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:2:1-55:12
 INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:2:1-55:12
 	package
-		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:4:5-50
+		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:4:5-46
 		INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml
 		INJECTED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml
 	android:versionName
@@ -313,7 +313,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/dhru
 		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:27:7-33
 	android:theme
 		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:32:7-38
-activity#com.google.mediapipe.examples.hands.MainActivity
+activity#com.google.mediapipe.apps.hands.MainActivity
 ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:34:5-43:16
 	android:screenOrientation
 		ADDED from /Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:36:9-47

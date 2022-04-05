@@ -19,10 +19,10 @@ package(default_visibility = ["//visibility:private"])
 android_binary(
     name = "hands",
     srcs = glob(["**/*.java"]),
-    custom_package = "com.google.mediapipe.examples.hands",
+    custom_package = "com.google.mediapipe.apps.hands",
     manifest = "AndroidManifest.xml",
     manifest_values = {
-        "applicationId": "com.google.mediapipe.examples.hands",
+        "applicationId": "com.google.mediapipe.apps.hands",
     },
     multidex = "native",
     resource_files = ["//mediapipe-hands:resource_files"],

@@ -75,7 +75,7 @@
 43-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:32:7-38
 44        <activity
 44-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:34:5-43:16
-45            android:name="com.google.mediapipe.examples.hands.MainActivity"
+45            android:name="com.google.mediapipe.apps.hands.MainActivity"
 45-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:35:9-37
 46            android:exported="true"
 46-->/Users/dhruvilpatel/Documents/mediapipe-hands/hands-demo/hands/src/main/AndroidManifest.xml:37:9-32

@@ -1,17 +1,17 @@
-com/google/mediapipe/examples/hands/HandsResultGlRenderer.java
- com.google.mediapipe.examples.hands.HandsResultGlRenderer
-com/google/mediapipe/examples/hands/ConvolutionMatrix.java
- com.google.mediapipe.examples.hands.ConvolutionMatrix
-com/google/mediapipe/examples/hands/BuildConfig.java
- com.google.mediapipe.examples.hands.BuildConfig
-com/google/mediapipe/examples/hands/KCCameraInput.java
- com.google.mediapipe.examples.hands.KCCameraInput
- com.google.mediapipe.examples.hands.KCCameraInput$CameraFacing
-com/google/mediapipe/examples/hands/KCCameraXPreviewHelper.java
- com.google.mediapipe.examples.hands.KCCameraXPreviewHelper
- com.google.mediapipe.examples.hands.KCCameraXPreviewHelper$SingleThreadHandlerExecutor
-com/google/mediapipe/examples/hands/MainActivity.java
- com.google.mediapipe.examples.hands.MainActivity
- com.google.mediapipe.examples.hands.MainActivity$InputSource
-com/google/mediapipe/examples/hands/HandsResultImageView.java
- com.google.mediapipe.examples.hands.HandsResultImageView
+com/google/mediapipe/apps/hands/BuildConfig.java
+ com.google.mediapipe.apps.hands.BuildConfig
+com/google/mediapipe/apps/hands/ConvolutionMatrix.java
+ com.google.mediapipe.apps.hands.ConvolutionMatrix
+com/google/mediapipe/apps/hands/KCCameraXPreviewHelper.java
+ com.google.mediapipe.apps.hands.KCCameraXPreviewHelper
+ com.google.mediapipe.apps.hands.KCCameraXPreviewHelper$SingleThreadHandlerExecutor
+com/google/mediapipe/apps/hands/MainActivity.java
+ com.google.mediapipe.apps.hands.MainActivity
+ com.google.mediapipe.apps.hands.MainActivity$InputSource
+com/google/mediapipe/apps/hands/HandsResultGlRenderer.java
+ com.google.mediapipe.apps.hands.HandsResultGlRenderer
+com/google/mediapipe/apps/hands/KCCameraInput.java
+ com.google.mediapipe.apps.hands.KCCameraInput
+ com.google.mediapipe.apps.hands.KCCameraInput$CameraFacing
+com/google/mediapipe/apps/hands/HandsResultImageView.java
+ com.google.mediapipe.apps.hands.HandsResultImageView
